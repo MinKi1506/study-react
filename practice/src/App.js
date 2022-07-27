@@ -7,8 +7,6 @@ import { useState } from 'react';
 import data from './data';
 import { Routes, Route, Link } from 'react-router-dom';
 
-
-
 function App() {
 
   let [review, setReview] = useState(data);
@@ -18,11 +16,8 @@ function App() {
 
       <Routes>
         <Route path='/goTrip' element={<div>여행가기</div>}/>
-
         <Route path='/myInfo' element={<div>내 정보</div>}/>
       </Routes>
-
-
 
       <div>
         <Navbar bg="dark" variant="dark">
@@ -41,7 +36,6 @@ function App() {
       <Button variant="outline-primary">Primary</Button>{' '}
 
       <Card review={review} />
-
 
     </div>
   );
