@@ -6,6 +6,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useState } from 'react';
 import data from './data';
 import { Routes, Route, Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Table from 'react-bootstrap/Table';
+import Carousel from 'react-bootstrap/Carousel';
 
 function App() {
 
@@ -17,7 +20,8 @@ function App() {
       width: '360px',
       height: '640px',
       overflow: 'auto',
-      scrollbarWidth: 'none'
+      scrollbarWidth: 'none',
+      fontFamily: 'nanum'
     }}>
 
       <Routes>
@@ -94,30 +98,101 @@ function App() {
         {/* 기능 버튼 */}
         <div>
           <Button style={{
-            height: '90px'
+            height: '70px',
+            width: '70px'
           }} variant="outline-primary">여행가기</Button>{' '}
           <Button style={{
-            height: '90px'
+            height: '70px',
+            width: '70px'
           }} variant="outline-primary">우리 지역 <br></br> 큐레이팅</Button>{' '}
           <Button style={{
-            height: '90px'
+            height: '70px',
+            width: '70px'
           }} variant="outline-primary">이벤트</Button>{' '}
           <Button style={{
-            height: '90px'
-          }} variant="outline-primary">●●●</Button>{' '}
+            height: '70px',
+            width: '70px'
+          }} variant="outline-primary">더 보기</Button>{' '}
         </div>
 
-          {/* 실시간 코인 시세 현황 */}
-        <div style={{
-          height: '500px'
-        }}>
+        {/* 실시간 코인 시세 현황 */}
+        <div>
+          <Table striped bordered hover size="sm">
+            <thead>
+              <tr>
+                <th>코인</th>
+                <th>현재 가격</th>
+                <th>Last Nam</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>BitCoin</td>
+                <td>Thornton</td>
+              </tr>
+              <tr>
+                <td>eth</td>
+                <td>Thornton</td>
+              </tr>
+              <tr>
+                <td>솔라나</td>
+                <td>Thornton</td>
+              </tr>
+            </tbody>
+          </Table>
         </div>
 
         {/* 베스트 리뷰 */}
-        <div>
-          <h1>
-            베스트 리뷰
-          </h1>
+        <div style={{
+          padding: '10px'
+        }}>
+          <Carousel>
+            <Carousel.Item interval={1000}>
+              <img style={{
+                borderRadius: '15px'
+              }}
+                className="d-block w-100"
+                src="\img\pusan.jpg"
+                alt="First slide"
+              />
+              <Carousel.Caption>
+                <h3 style={{
+                  fontSize: '20px'
+                }}>부산 해운대</h3>
+                <h6>해운대 앞바다와 마천루가 선사하는 근사한 야경 abc</h6>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item interval={500}>
+              <img style={{
+                borderRadius: '15px'
+              }}
+                className="d-block w-100"
+                src="\img\bookchon.jpg"
+                alt="Second slide"
+              />
+              <Carousel.Caption>
+                <h3 style={{
+                  fontSize: '20px'
+                }}>서울 북촌 한옥마을</h3>
+                <h6>고즈넉한 분위기의 전통 한옥!</h6>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img style={{
+                borderRadius: '15px'
+              }}
+                className="d-block w-100"
+                src="\img\geoje.jpg"
+                alt="Third slide"
+              />
+              <Carousel.Caption>
+                <h3 style={{
+                  fontSize: '20px'
+                }}>경남 거제시</h3>
+                <h6>조용하고 따뜻한 바다마을을 여행하고 싶다면.. 거제로!</h6>
+              </Carousel.Caption>
+            </Carousel.Item>
+          </Carousel>
         </div>
 
         {/* <Card review={review} /> */}
