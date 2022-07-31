@@ -57,6 +57,11 @@
   src: url('./static/font/nanum.ttf');
 }
 
+@font-face {
+  font-family: "cafe";
+  src: url('./static/font/cafe.ttf');
+}
+
 /* 스크롤바 숨기기*/
 .box{
   -ms-overflow-style: none;
@@ -103,3 +108,4 @@ i:hover {
 .fa-keyboard {
   margin-right: 10px;
 }
+
