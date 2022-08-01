@@ -10,78 +10,48 @@ import { Routes, Route, Link, useNavigate, BrowserRouter as Router } from 'react
 
 function MainPage() {
 
-  let [review, setReview] = useState();
   let navigate = useNavigate();
-  let  btc_price, btc_change, eth_price, eth_change, xrp_price, xrp_change, neo_price, neo_change = 0;
-  const [coin, setCoin] = useState({});
-
+  let [quoation, setQuoation] = useState([]);
 
   // 코인 시세 업데이트 기능
   // cors 이슈 참고: https://sennieworld.tistory.com/m/49 
-  function updateQuoation(){
-    axios.get('https://api.upbit.com/v1/ticker',{
+  // cors 오류 해결을 위한 프록시 수동 설정: https://hoons-up.tistory.com/26 이 방법을 사용
+  async function updateQuoation() {
+    await axios.get('/v1/ticker', {
       params: {
-        markets: 'KRW-BTC'
+        markets: 'KRW-BTC, KRW-ETH, KRW-XRP, KRW-NEO'
       }
-    })
-    .then(function(response){
-      console.log(response.data[0].trade_price);
-      console.log(response.data[0].change_price);
-      btc_price = response.data[0].trade_price;
-      btc_change = response.data[0].change_price;
-    })
-    .catch(function(error){
-      console.log('에러: '+error);
-    });
-    axios.get('https://api.upbit.com/v1/ticker',{
-      params: {
-        markets: 'KRW-ETH'
-      }
-    })
-    .then(function(response){
-      console.log(response.data[0].trade_price);
-      console.log(response.data[0].change_price);
-      eth_price = response.data[0].trade_price;
-      eth_change = response.data[0].change_price;
-    })
-    .catch(function(error){
-      console.log('에러: '+error);
-    });
-    axios.get('https://api.upbit.com/v1/ticker',{
-      params: {
-        markets: 'KRW-XRP'
-      }
-    })
-    .then(function(response){
-      console.log(response.data[0].trade_price);
-      console.log(response.data[0].change_price);
-      xrp_price = response.data[0].trade_price;
-      xrp_change = response.data[0].change_price;
-    })
-    .catch(function(error){
-      console.log('에러: '+error);
-    });
-    axios.get('https://api.upbit.com/v1/ticker',{
-      params: {
-        markets: 'KRW-NEO'
-      }
-    })
-    .then(function(response){
-      console.log(response.data[0].trade_price);
-      console.log(response.data[0].change_price);
-      neo_price = response.data[0].trade_price;
-      neo_change = response.data[0].change_price;
-    })
-    .catch(function(error){
-      console.log('에러: '+error);
-    });
+    }
+    )
+      .then(function (response) {
+        // console.log(response.data[0].trade_price);
+        // console.log(response.data[0].change_price);
+        // console.log(response.data[1].trade_price);
+        // console.log(response.data[1].change_price);
+        // console.log(response.data[2].trade_price);
+        // console.log(response.data[2].change_price);
+        // console.log(response.data[3].trade_price);
+        // console.log(response.data[3].change_price);
+
+        let quoationCopy = [...quoation];
+        quoationCopy[0] = response.data[0].trade_price;
+        quoationCopy[1] = response.data[0].signed_change_price;
+        quoationCopy[2] = response.data[1].trade_price;
+        quoationCopy[3] = response.data[1].signed_change_price;
+        quoationCopy[4] = response.data[2].trade_price;
+        quoationCopy[5] = response.data[2].signed_change_price;
+        quoationCopy[6] = response.data[3].trade_price;
+        quoationCopy[7] = response.data[3].signed_change_price;
+
+        setQuoation(quoationCopy);
+      })
+      .catch(function (error) {
+        console.log('에러: ' + error);
+      });
   }
+    updateQuoation();
+  
 
-
-
-  updateQuoation();
- setInterval(updateQuoation,10000);
- 
   return (
     <div>
       <div className="App box" style={{
@@ -195,23 +165,23 @@ function MainPage() {
               <tbody>
                 <tr>
                   <td>BitCoin</td>
-                  <td>{btc_price}</td>
-                  <td>{btc_change}</td>
+                  <td>{quoation[0]}</td>
+                  <td>{quoation[1]}</td>
                 </tr>
                 <tr>
                   <td>Ethereum</td>
-                  <td>{eth_price}</td>
-                  <td>{eth_change}</td>
+                  <td>{quoation[2]}</td>
+                  <td>{quoation[3]}</td>
                 </tr>
                 <tr>
                   <td>XRP</td>
-                  <td><h2>{xrp_price}</h2></td>
-                  <td><h2>{xrp_change}</h2></td>
+                  <td>{quoation[4]}</td>
+                  <td>{quoation[5]}</td>
                 </tr>
                 <tr>
                   <td>NEO</td>
-                  <td>{neo_price}</td>
-                  <td>{neo_change}</td>
+                  <td>{quoation[6]}</td>
+                  <td>{quoation[7]}</td>
                 </tr>
               </tbody>
             </Table>
