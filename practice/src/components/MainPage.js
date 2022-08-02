@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
 import Carousel from 'react-bootstrap/Carousel';
@@ -49,8 +49,19 @@ function MainPage() {
         console.log('에러: ' + error);
       });
   }
-    updateQuoation();
-    // 리액트는 이렇게 함수를 실행 시키고, 다시 처음부터 시작하여 재 랜더링을 한다 
+
+    useEffect(() => {
+      updateQuoation()
+      const timer = setInterval(updateQuoation, 10000)
+      return () => {
+        clearTimeout(timer);
+      }
+    }, [])
+
+    
+    // 리액트는 이렇게 함수를 실행 시키고, 다시 처음부터 시작하여 재랜더링을 한다.
+
+
   
 
   return (
