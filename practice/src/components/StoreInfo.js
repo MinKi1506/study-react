@@ -147,17 +147,40 @@ function StoreInfo() {
                 </div>
             </div>
             <div style={{
-                boderBottom: 'borderBottom: double 5px'
+                borderBottom: 'double 5px',
+                padding: '5px'
             }}>
                 <div>
-                    <h3>주소: <span>경남 거제시 일운면 지세포로 122</span></h3>
-                    <h3>영업시간: <span>오전 11시</span>~<span>오후 10시</span></h3>
-                    <h3>홈페이지: <span>www.naver.com</span></h3>
-                    <h3>Instagram: <span>www.naver.com</span></h3>
-                    <h3>Tel: <span>055-541-8426</span></h3>
+                    <h3 className='bold_letter'>주소: <span className='normal_letter'>경남 거제시 일운면 지세포로 122</span></h3>
+                    <h3 className='bold_letter'>영업시간: <span className='normal_letter'>오전 11시</span>~<span className='normal_letter'>오후 10시</span></h3>
+                    <h3 className='bold_letter'>홈페이지: <span className='normal_letter'>www.naver.com</span></h3>
+                    <h3 className='bold_letter'>Instagram: <span className='normal_letter'>www.naver.com</span></h3>
+                    <h3 className='bold_letter'>Tel: <span className='normal_letter'>055-541-8426</span></h3>
                 </div>
 
             </div>
+            <div style={{
+                paddingLeft: '5px',
+                }}>
+                <h3 className='bold_letter'>여행 Data</h3>
+                <h5>-<span style={{
+                    color: 'skyblue',
+                    fontWeight: 'bold'
+                }}>20대 남성</span>여행객들이 주로 방문 했어요!</h5>
+                <h5>-가장 많이 붐비는 시간은 <span style={{
+                    color: 'pink',
+                    fontWeight: 'bold'
+                }}>14시</span>에요!</h5>
+                <h5>-이 가게 주변의 인기 여행지 <a href='https://www.naver.com/' style={{
+                    fontWeight: 'bold'
+                }}>보러가기</a></h5>
+                <div style={{
+                    width: '100%',
+                }}>
+                    <img className='store_photo' src='/img/graph_sample.png'></img>
+                </div>
+            </div>
+
         </div>
     );
 }

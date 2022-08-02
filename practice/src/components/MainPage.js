@@ -50,6 +50,7 @@ function MainPage() {
       });
   }
     updateQuoation();
+    // 리액트는 이렇게 함수를 실행 시키고, 다시 처음부터 시작하여 재 랜더링을 한다 
   
 
   return (
